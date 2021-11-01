@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 02:35:34 by dmontema          #+#    #+#             */
-/*   Updated: 2021/10/31 22:45:21 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/01 19:50:10 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ int	ft_printf(const char *format, ...)
 					char *s = ft_itoa(intVal);
 					ft_putstr_fd(s, 1);
 					format++;
+					count_args += (int) ft_strlen(s) - 1;
 				}
 				else if (*format == 's')
 				{
 					char *str = va_arg(args, char *);
 					ft_putstr_fd(str, 1);
 					format++;
+					count_args += (int) ft_strlen(str) - 1;
 				}
 				else if (*format == 'c')
 				{
