@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 02:35:34 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/01 19:50:10 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/01 22:34:12 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,16 @@ int	ft_printf(const char *format, ...)
 					ft_putchar_fd('%', 1),
 					format++;
 				}
+				else if (*format == 'p')
+				{
+					long unsigned luVal = va_arg(args, long unsigned);
+					int out = printf("0x%lx", luVal);
+					// char *s = ft_itoa(intVal);
+					// ft_putstr_fd(s, 1);
+					count_args += out;
+					format++;
+					// count_args += (int) ft_strlen(s) - 1;
+				}
 			}
 			else
 			{
@@ -124,9 +134,16 @@ int main() {
 	// printf("\n%d\n", outInt);
 
 	// test for printing strings in combination with arguments (%d, %i, %s, %c, %%) and comparing it with og printf
-	int out = ft_printf("Hello, my name is %s and I am %d years old. :)\n%%\n%c%i\n", "Denice", 25, 'E', 1);
-	int out1 = printf("Hello, my name is %s and I am %d years old. :)\n%%\n%c%i\n", "Denice", 25, 'E', 1);
-	ft_printf("%d | %d\n", out, out1);
+	// int out = ft_printf("Hello, my name is %s and I am %d years old. :)\n%%\n%c%i\n", "Denice", 25, 'E', 1);
+	// int out1 = printf("Hello, my name is %s and I am %d years old. :)\n%%\n%c%i\n", "Denice", 25, 'E', 1);
+	// ft_printf("%d | %d\n", out, out1);
+
+
+	int x = 10;
+	int out1 = ft_printf("%p\n", &x);
+	printf("\n");
+	int out2 = printf("%p\n", &x);
+	ft_printf("%d | %d", out1, out2);
 
 	return 0;
 }
