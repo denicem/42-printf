@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 02:35:34 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/03 21:11:46 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/03 21:15:25 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_printf(const char *format, ...)
 		va_start(args, format);
 
 		// PROTOTYPE: printing arguments (i, d, s, c %%) with characters within
-		//TODO: other method for printing of numbers (with ft_putnbr)
+		//TODO: add a func to select to select a specifier conversion. 
 		while (*format)
 		{
 			if (*format == '%')
