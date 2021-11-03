@@ -6,13 +6,15 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 02:35:34 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/02 00:31:07 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/03 21:11:46 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
 #include "ft_printf.h"
+
+int	ft_putnbr_base(unsigned long nbr, char *set, unsigned base);
 
 // void	ft_putunbr_fd(int n, int fd)
 // {
@@ -80,11 +82,33 @@ int	ft_printf(const char *format, ...)
 					format++;
 					count_args += (int) ft_strlen(s) - 1;
 				}
-				// else if (*format)
-				// {
-				// 	int intU = va_arg(args, int);
-					
-				// }
+				//usage of ft_putnbr_base works with every base including unsinged integer
+				else if (*format == 'x')
+				{
+					count_args += ft_putnbr_base(va_arg(args, long unsigned), "0123456789abcdef", 16); 
+					format++;
+				}
+				else if (*format == 'X')
+				{
+					count_args += ft_putnbr_base(va_arg(args, long unsigned), "0123456789ABCDEF", 16);
+					format++;
+				}
+				else if (*format == 'o')
+				{
+					count_args += ft_putnbr_base(va_arg(args, long unsigned), "01234567", 8);
+					format++;
+				}
+				else if (*format == 'b')
+				{
+					count_args += ft_putnbr_base(va_arg(args, long unsigned), "01", 2);
+					format++;
+				}
+				else if (*format == 'u')
+				{
+					count_args += ft_putnbr_base(va_arg(args, long unsigned), "0123456789", 10);
+					format++;
+				}
+				// END usage of ft_putnbr_base works with every base including unsinged integer
 				else if (*format == 's')
 				{
 					char *str = va_arg(args, char *);
@@ -141,6 +165,25 @@ int	ft_printf(const char *format, ...)
 	return (count_args);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
+// PROTOTYPE printing hexadecimal
+// void	put_nbrx(long long unsigned nbr) {}
+
+// PROTOTYPE printing unsigned integer
+int	ft_putnbr_base(unsigned long nbr, char *set, unsigned base)
+{
+	unsigned tmp;
+	int res;
+
+	res = 0;
+	if (nbr >= base)
+		res += ft_putnbr_base(nbr / base, set, base);
+	tmp = nbr % base;
+	res += write(1, set + tmp, 1);
+	return (res);
+}
+
 int main() {
 	// test for countArgs
 	// printf("%d\n", ft_printf("%c%s%p%d%i%u%x%X%%")); 
@@ -164,13 +207,25 @@ int main() {
 	// ft_printf("%d | %d\n", out, out1);
 
 	//test for printing pointer address
-	int x = 10;
-	int out1 = ft_printf("%p\n", &x);
-	printf("\n");
-	int out2 = printf("%p\n", &x);
-	ft_printf("%d | %d", out1, out2);
+	// int x = 10;
+	// int out1 = ft_printf("%p\n", &x);
+	// printf("\n");
+	// int out2 = printf("%p\n", &x);
+	// ft_printf("%d | %d", out1, out2);
 
-	// ft_printf("%u", -2);
+	// printf("%u\n", INT_MIN);
+	// printf("%u\n", INT_MAX);
+	// printf("%u\n", INT_MIN +1);
+	// printf("%u\n", -1);
+	// printf("%u\n", -2);
+	// printf("%u\n", -3);
+	// printf("%u\n", -4);
+	// printf("%u\n", -5);
+	// printf("%u\n", -6);
+	// int i = ft_putnbr_base(32, "01", 2);
+	// printf ("%d\n", i);
+
+	ft_printf("%u\n", -2);
 
 	return 0;
 }
