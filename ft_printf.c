@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:07:33 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/04 21:10:59 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/04 22:53:28 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,18 @@ int ft_putnbr_int(int nbr)
 	return (res);
 }
 
-int	ft_putnbr_base(unsigned long nbr, char *set, unsigned base)
+int	ft_putnbr_base(unsigned long nbr, char *set, unsigned base, int addr)
 {
 	int	res;
 
 	res = 0;
+	if (addr)
+	{
+		res += write(1, "0x", 2);
+		addr = 0;
+	}
 	if (nbr >= base)
-		res += ft_putnbr_base(nbr / base, set, base);
+		res += ft_putnbr_base(nbr / base, set, base, addr);
 	res += write(1, set + (nbr % base), 1);
 	return (res);
 }
@@ -62,10 +67,10 @@ int ft_putstr(char *str)
 	return (res);
 }
 
-// TODO: from "else if: %u, ..." line too long, assign va_arg in one ul var and then call the funcs
 int	selectConvSpec(char **format, va_list *args)
 {
 	int	res;
+	unsigned long val_uxXp;
 
 	res = 0;
 	if (**format == '%')
@@ -76,17 +81,16 @@ int	selectConvSpec(char **format, va_list *args)
 		res += (ft_putstr(va_arg(*args, char *)));
 	else if (**format == 'd' || **format == 'i')
 		res += (ft_putnbr_int(va_arg(*args, int)));
-	else if (**format == 'u')
-		res += (ft_putnbr_base(va_arg(*args, unsigned long), "0123456789", 10));
+	else
+		val_uxXp = va_arg(*args, unsigned long);
+	if (**format == 'u')
+		res += (ft_putnbr_base(val_uxXp, "0123456789", 10, 0));
 	else if (**format == 'x')
-		res += (ft_putnbr_base(va_arg(*args, unsigned long), "0123456789abcdef", 16));
+		res += (ft_putnbr_base(val_uxXp, "0123456789abcdef", 16, 0));
 	else if (**format == 'X')
-		res += (ft_putnbr_base(va_arg(*args, unsigned long), "0123456789ABCDEF", 16));
+		res += (ft_putnbr_base(val_uxXp, "0123456789ABCDEF", 16, 0));
 	else if (**format == 'p')
-	{
-		res += ft_putstr("0x");
-		res += (ft_putnbr_base(va_arg(*args, unsigned long), "0123456789abcdef", 16));
-	}
+		res += (ft_putnbr_base(val_uxXp, "0123456789abcdef", 16, 1));
 	return (res);
 }
 
