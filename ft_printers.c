@@ -6,18 +6,18 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:44:17 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 00:47:37 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 01:13:41 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	"ft_printf.h"
+#include	"ft_printf.h"
 
 int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
-int ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
 	int	res;
 
@@ -29,7 +29,7 @@ int ft_putstr(char *str)
 	return (res);
 }
 
-int ft_putnbr_int(int nbr)
+int	ft_putnbr_int(int nbr)
 {
 	int	res;
 
@@ -50,7 +50,7 @@ int ft_putnbr_int(int nbr)
 	return (res);
 }
 
-int	ft_putnbr_base(unsigned long nbr, char *set, unsigned base, int addr)
+int	ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int addr)
 {
 	int	res;
 

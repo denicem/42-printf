@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:07:33 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 00:48:03 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 01:17:33 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	selectConvSpec(char **format, va_list *args)
 {
-	int	res;
-	unsigned long val_uxXp;
+	int				res;
+	unsigned long	val_uxXp;
 
 	res = 0;
 	if (**format == '%')
-		res+= (ft_putchar('%'));
+		res += (ft_putchar('%'));
 	else if (**format == 'c')
 		res += (ft_putchar(va_arg(*args, int)));
 	else if (**format == 's')
@@ -57,5 +57,6 @@ int	ft_printf(const char *format, ...)
 			res += ft_putchar(*format);
 		format++;
 	}
+	va_end(args);
 	return (res);
 }
