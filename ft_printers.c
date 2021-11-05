@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:44:17 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 03:20:17 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 23:42:52 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,16 @@ int	ft_putstr(char *str)
 	return (res);
 }
 
-int	ft_putnbr_int(int nbr)
+int	ft_putnbr_int(int nbr, int flag)
 {
 	int	res;
 
 	res = 0;
+	if (nbr >= 0 && flag == space)
+		res += write(1, " ", 1);
+	else if (nbr >= 0 && flag == plus)
+		res += write(1, "+", 1);
+	flag = noflag;
 	if (nbr == INT_MIN)
 	{
 		res += write(1, "-2", 2);
@@ -48,24 +53,27 @@ int	ft_putnbr_int(int nbr)
 		nbr = -nbr;
 	}
 	if (nbr > 9)
-		res += ft_putnbr_int(nbr / 10);
+		res += ft_putnbr_int(nbr / 10, flag);
 	res += ft_putchar(nbr % 10 + 48);
 	return (res);
 }
 
-int	ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int addr)
+int	ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int f)
 {
 	int	res;
 
-	if (addr)
+	if (f == hash && nbr > 0)
 	{
-		res = write(1, "0x", 2);
-		addr = 0;
+		if (ft_strchr(set, 'A'))
+			res = write(1, "0X", 2);
+		else
+			res = write(1, "0x", 2);
+		f = noflag;
 	}
 	else
 		res = 0;
 	if (nbr >= base)
-		res += ft_putnbr_base(nbr / base, set, base, addr);
+		res += ft_putnbr_base(nbr / base, set, base, f);
 	res += write(1, set + (nbr % base), 1);
 	return (res);
 }
@@ -77,6 +85,6 @@ int	ft_putaddr(void *addr)
 
 	res = 0;
 	addr_nbr = (unsigned long) addr;
-	res += ft_putnbr_base(addr_nbr, "0123456789abcdef", 16, 1);
+	res += ft_putnbr_base(addr_nbr, "0123456789abcdef", 16, hash);
 	return (res);
 }

@@ -6,14 +6,14 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 02:35:37 by dmontema          #+#    #+#              #
-#    Updated: 2021/11/05 01:22:15 by dmontema         ###   ########.fr        #
+#    Updated: 2021/11/05 22:35:52 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	libftprintf.a
 HEADERFILES		=	./ft_printf.h
 
-FT_PRINTF_SRCS	=	ft_printf.c ft_printers.c
+FT_PRINTF_SRCS	=	ft_printf.c ft_printers.c ft_helpers.c
 
 FT_PRINTF_OBJS	=	$(FT_PRINTF_SRCS:.c=.o)
 
@@ -25,6 +25,8 @@ all:	$(NAME)
 
 $(NAME):	$(FT_PRINTF_OBJS)
 	$(AR) $(NAME) $(FT_PRINTF_OBJS)
+
+bonus: all
 
 .c.o:	
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)

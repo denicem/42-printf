@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 02:35:30 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 03:09:36 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 22:30:57 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,23 @@
 # include	<stdarg.h>
 # include	<limits.h>
 
-int	ft_printf(const char *format, ...);
-int	selectConvSpec(char **format, va_list *args);
-int	ft_putnbr_int(int nbr);
-int	ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int addr);
-int	ft_putchar(char c);
-int	ft_putstr(char *str);
-int	ft_putaddr(void *addr);
+int		ft_printf(const char *format, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_putnbr_int(int nbr, int flag);
+int		ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int f);
+int		ft_putaddr(void *addr);
+
+size_t	ft_strlen(const char *s);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+enum	e_flag {
+	noflag,
+	space,
+	plus,
+	hash
+};
 
 #	endif
