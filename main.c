@@ -6,13 +6,13 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:48:18 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 00:50:38 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 03:14:35 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	"ft_printf.h"
+#include	"ft_printf.h"
 
-# include	<stdio.h>
+#include	<stdio.h>
 
 int main() {
 	// test for countArgs
@@ -27,7 +27,7 @@ int main() {
 	// printf("\n%d %d\n", out, out1);
 	// ft_printf("HAPPY HALLOWEEN!!\n");
 
-	//test for printing int values only (and result variable)
+	// test for printing int values only (and result variable)
 	// int outInt =  ft_printf("%d%d", 42, 24);
 	// printf("\n%d\n", outInt);
 
@@ -36,18 +36,30 @@ int main() {
 	// int out1 = printf("Hello, my name is %s and I am %d years old. :)\n%%\n%c%i\n", "Denice", 25, 'E', 1);
 	// ft_printf("%d | %d\n", out, out1);
 
-	//test for printing pointer address
-	int x = 10;
-	int out1 = ft_printf("%p\n", &x);
-	int out2 = printf("%p\n", &x);
-	ft_printf("%d | %d", out1, out2);
-
 	// int out = ft_printf("Hallo, %s.\nHappy Halloween%c\n", "Svenja", '!');
 	// int out1 = ft_printf("%d%i %X %x %u\n%d%%\n", 42, 24, 674, 1234, -23445, 100);
 	// ft_printf("%d, %d\n", out, out1);
-	// out = ft_printf("Hallo, %s.\nHappy Halloween%c\n", "Svenja", '!');
-	// out1 = ft_printf("%d%i %X %x %u\n%d%%\n", 42, 24, 674, 1234, -23445, 100);
+	// out = printf("Hallo, %s.\nHappy Halloween%c\n", "Svenja", '!');
+	// out1 = printf("%d%i %X %x %u\n%d%%\n", 42, 24, 674, 1234, -23445, 100);
 	// ft_printf("%d, %d\n", out, out1);
+
+	// test for printing pointer address
+	// int x = 10;
+	// int out1 = ft_printf("%p\n", &x);
+	// int out2 = printf("%p\n", &x);
+	// ft_printf("%d | %d", out1, out2);
+
+	// test if string is NULL
+	// ft_printf("%d\n", ft_printf(" NULL %s NULL ", NULL));
+
+	// test for LONG numbers
+	// printf("LONGMAX: %u\nLONG_MIN: %u\nULONG_MAX: %u\n922333...: %u\n\n", LONG_MAX, LONG_MIN, ULONG_MAX, 9223372036854775807LL);
+	// printf("\n");
+	// ft_printf("LONG_MAX: %u\nLONG_MIN: %u\nULONG_MAX: %u\n922333...: %u\n", LONG_MAX, LONG_MIN, ULONG_MAX, 9223372036854775807LL);
+
+	// test for long addresses
+	printf("%p %p\n", LONG_MIN, LONG_MAX);
+	ft_printf("%p %p\n", LONG_MIN, LONG_MAX);
 
 	return (0);
 }

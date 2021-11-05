@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:44:17 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 01:13:41 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 03:20:17 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	ft_putstr(char *str)
 	int	res;
 
 	if (str == NULL)
-		return (0);
+	{
+		res = write(1, "(null)", 6);
+		return (res);
+	}
 	res = 0;
 	while (*str)
 		res += ft_putchar(*str++);
@@ -54,14 +57,26 @@ int	ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int addr)
 {
 	int	res;
 
-	res = 0;
 	if (addr)
 	{
-		res += write(1, "0x", 2);
+		res = write(1, "0x", 2);
 		addr = 0;
 	}
+	else
+		res = 0;
 	if (nbr >= base)
 		res += ft_putnbr_base(nbr / base, set, base, addr);
 	res += write(1, set + (nbr % base), 1);
+	return (res);
+}
+
+int	ft_putaddr(void *addr)
+{
+	int				res;
+	unsigned long	addr_nbr;
+
+	res = 0;
+	addr_nbr = (unsigned long) addr;
+	res += ft_putnbr_base(addr_nbr, "0123456789abcdef", 16, 1);
 	return (res);
 }

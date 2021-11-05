@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 02:35:30 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 00:50:00 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/05 03:09:36 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	ft_putnbr_int(int nbr);
 int	ft_putnbr_base(unsigned long nbr, char *set, unsigned int base, int addr);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
+int	ft_putaddr(void *addr);
 
 #	endif
