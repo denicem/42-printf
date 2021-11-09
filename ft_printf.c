@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:07:33 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 23:23:57 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:11:33 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ static char	*get_flags(char **format)
 	int		i;
 
 	i = 0;
-	// while (is_flag(**format))
-	// {
-	// 	(*format)++;
-	// 	i++;
-	// }
-	// res = ft_substr(*format - i, 0, i);
 	while (!is_alpha(*(*format + i)))
 		i++;
 	res = ft_substr(*format, 0, i);

@@ -6,7 +6,7 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 02:35:37 by dmontema          #+#    #+#              #
-#    Updated: 2021/11/05 22:35:52 by dmontema         ###   ########.fr        #
+#    Updated: 2021/11/09 18:04:22 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,3 @@ fclean:	clean
 	rm -f $(NAME)
 
 re: fclean all
-
-main:	
-	$(CC) $(CFLAGS) $(FT_PRINTF_SRCS) main.c
-	./a.out
