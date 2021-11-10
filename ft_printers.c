@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:44:17 by dmontema          #+#    #+#             */
-/*   Updated: 2021/11/05 23:42:52 by dmontema         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:53:20 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	ft_putaddr(void *addr)
 
 	res = 0;
 	addr_nbr = (unsigned long) addr;
-	res += ft_putnbr_base(addr_nbr, "0123456789abcdef", 16, hash);
+	res += write(1, "0x", 2);
+	res += ft_putnbr_base(addr_nbr, "0123456789abcdef", 16, noflag);
 	return (res);
 }
